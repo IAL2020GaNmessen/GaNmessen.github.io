@@ -9,9 +9,10 @@
 <!--  -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+ 
  </head>
+ 
+ 
  <body>
   <div class="container">
    <div class="table-responsive">
@@ -29,7 +30,7 @@
    </div>
   </div>
  </body>
-</html>
+
 
 <script>
 $(document).ready(function(){
@@ -45,7 +46,7 @@ $(document).ready(function(){
     {
      var cell_data = employee_data[count].split(",");
      table_data += '<tr>';
-     for(var cell_count=1; cell_count<cell_data.length; cell_count++)
+     for(var cell_count=0; cell_count<cell_data.length; cell_count++)
      {
       if(count === 0)
       {
@@ -94,3 +95,4 @@ $(document).ready(function(){
     chart.draw(cell_data, options);
   }
 </script>
+</html>

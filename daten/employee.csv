@@ -1,22 +1,22 @@
-Name,Address,Gender,Designation,Age
-John S,656 Edsel Road Sherman Oaks CA 91403,Male,Manager,40
-Clara Berry,63 Woodridge Lane Memphis TN 38138,Male,Programmer,22
-Barbra K. Hurley,1241 Canis Heights Drive Los Angeles CA 90017,Female,Service technician,26
-Antonio J. Forbes,403 Snyder Avenue Charlotte NC 28208,Male,Falling,32
-Charles D. Horst,1636 Walnut Hill Drive Cincinnati OH 45202,Male,Financial investigator,29
-Beau L. Clayton,3588 Karen Lane Louisville KY 40223,Male,Extractive metallurgical engin,33
-Ramona W. Burns,2170 Ocala Street Orlando FL 32801,Female,Electronic typesetting machine operator,27
-Jennifer A. Morrison,2135 Lakeland Terrace Plymouth MI 48170,Female,Rigging chaser,29
-Susan Juarez,3177 Horseshoe Lane Norristown PA 19403,Male,Control and valve installe,52
-Ellan D. Downie,384 Flynn Street Strongsville OH 44136,Female,Education and training manager,26
-Larry T. Williamson,1424 Andell Road Brentwood TN 37027,Male,Teaching assistant,30
-Lauren M. Reynolds,4798 Echo Lane Kentwood MI 49512,Female,Internet developer,22
-Joseph L. Judge,3717 Junkins Avenue Moultrie GA 31768,Male,Refrigeration mechanic,35
-Eric C. Lavelle,1120 Whitetail Lane Dallas TX 75207,Male,Model,21
-Cheryl T. Smithers,1203 Abia Martin Drive Commack NY 11725,Female,Personal banker,23
-Tonia Diaz,4724 Rocky Road Philadelphia PA 19107,Female,Facilitator,29
-Stephanie P. Lederman,2117 Larry Street Waukesha WI 53186,Female,Mental health aide,27
-Edward F. Sanchez,2313 Elliott Street Manchester NH 03101,Male,Marine oilerp,28
-Peter Parker,403 Snyder Avenue Charlotte NC 28208,Male,Programmer,28
-John Smith,384 Flynn Street Strongsville OH 44136,Male,Web Developer,25
-Mark Boucher,256 Olive Street NY,Male,Techbical Assistance,23
+Timestamp,temperatur1,temperatur2,temperatur3,temperatur4
+10012,40,39.9,39.95,39.93333333
+10014,22,21.9,21.95,21.93333333
+10016,26,25.9,25.95,25.93333333
+10018,32,31.9,31.95,31.93333333
+10020,29,28.9,28.95,28.93333333
+10022,33,32.9,32.95,32.93333333
+10024,27,26.9,26.95,26.93333333
+10026,29,28.9,28.95,28.93333333
+10028,52,51.9,51.95,51.93333333
+10030,26,25.9,25.95,25.93333333
+10032,30,29.9,29.95,29.93333333
+10034,22,22.2,22.1,22.13333333
+10036,35,35.2,35.1,35.13333333
+10038,21,21.2,21.1,21.13333333
+10040,23,23.2,23.1,23.13333333
+10042,29,29.2,29.1,29.13333333
+10044,27,27.2,27.1,27.13333333
+10046,28,28.2,28.1,28.13333333
+10048,28,28.2,28.1,28.13333333
+10050,25,25.2,25.1,25.13333333
+10052,23,23.2,23.1,23.13333333

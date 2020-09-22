@@ -9,7 +9,8 @@
 <!--  -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+  google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
  </head>
  <body>
   <div class="container">
@@ -18,7 +19,7 @@
     <br />
     <div align="center">
       <!--  -->
-      <div id="drawChart" style="width: 900px; height: 500px"></div>
+      <div id="curve_chart" style="width: 900px; height: 500px"></div>
 
      <button type="button" name="load_data" id="load_data" class="btn btn-info">Load Data</button>
     </div>
@@ -44,7 +45,7 @@ $(document).ready(function(){
     {
      var cell_data = employee_data[count].split(",");
      table_data += '<tr>';
-     for(var cell_count=0; cell_count<cell_data.length; cell_count++)
+     for(var cell_count=1; cell_count<cell_data.length; cell_count++)
      {
       if(count === 0)
       {
@@ -71,10 +72,10 @@ $(document).ready(function(){
 
 <script type="text/javascript">
   google.charts.load('current', {'packages':['corechart']});
-  google.charts.setOnLoadCallback(cell_data);
+  google.charts.setOnLoadCallback(drawChart);
 
   function drawChart() {
-    var data = google.visualization.arrayToDataTable([
+    var xxxdata = google.visualization.arrayToDataTable([
       ['Year', 'Sales', 'Expenses'],
       ['2004',  1000,      400],
       ['2005',  1170,      460],

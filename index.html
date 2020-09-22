@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html>
  <head>
-  <title>CSV File to HTML Table Using AJAX jQuery</title>
+  <title>IAL Bauelement</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+<!--  -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
  </head>
  <body>
   <div class="container">
    <div class="table-responsive">
-    <h1 align="center">CSV File to HTML Table Using AJAX jQuery</h1>
+    <h1 align="center">IAL GaN_DUT messen</h1>
     <br />
     <div align="center">
+      <!--  -->
+      <div id="drawChart" style="width: 900px; height: 500px"></div>
+
      <button type="button" name="load_data" id="load_data" class="btn btn-info">Load Data</button>
     </div>
     <br />
@@ -26,7 +34,7 @@
 $(document).ready(function(){
  $('#load_data').click(function(){
   $.ajax({
-   url:"./daten/employee.csv",
+   url:"employee.csv",
    dataType:"text",
    success:function(data)
    {
@@ -56,4 +64,32 @@ $(document).ready(function(){
  });
  
 });
+</script>
+
+
+
+
+<script type="text/javascript">
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(cell_data);
+
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+      ['Year', 'Sales', 'Expenses'],
+      ['2004',  1000,      400],
+      ['2005',  1170,      460],
+      ['2006',  660,       1120],
+      ['2007',  1030,      540]
+    ]);
+
+    var options = {
+      title: 'IAL GaN Performance',
+      curveType: 'function',
+      legend: { position: 'bottom' }
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+    chart.draw(cell_data, options);
+  }
 </script>

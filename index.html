@@ -3,44 +3,289 @@
  <head>
   <title>IAL Bauelement</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+  <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
 
 <!--  -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- 
- </head>
- 
- 
- <body>
-  <div class="container">
-   <div class="table-responsive">
-    <h1 align="center">IAL GaN_DUT messen</h1>
-    <br />
-    <div align="center">
-      <!--  -->
-      <div id="curve_chart" style="width: 900px; height: 500px"></div>
 
-     <button type="button" name="load_data" id="load_data" class="btn btn-info">Load Data</button>
-    </div>
-    <br />
-    <div id="employee_table">
-    </div>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+ </head>
+
+
+
+
+
+
+
+
+
+ <body>
+
+
+
+
+
+
+
+
+ <div class="container-fluid">
+  <div class="row">
+   <div class="col-md-8">
+
+    <img src="./daten/LUH_Logo.png" class="img-responsive" alt="Responsive image">
+<!--    <img alt="Bootstrap Image Preview" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" />-->
+   </div>
+   <div class="col-md-4">
+    <img src="./daten/IAL_Logo.png" class="img-responsive" alt="Responsive image">
+<!--    <img alt="Bootstrap Image Preview" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" />-->
    </div>
   </div>
- </body>
+  <div class="row">
+   <div class="col-md-12">
 
+<!--    https://mega.nz/file/zQ1lzKoT#rWXWOB7W7wIYpSBLonVULkOaeaiSuXBD0J_MCvUV6bo  -->
+
+    <div class="container">
+     <div class="table-responsive">
+
+      <h1 class="bg-info" align="center">IAL GaN_DUT messen</h1>
+<!--      <h1 align="center">IAL GaN_DUT messe-->
+<!--      </h1>-->
+      <br />
+      <div align="center">
+       <!--  -->
+       <a href="https://mega.nz/file/zQ1lzKoT#rWXWOB7W7wIYpSBLonVULkOaeaiSuXBD0J_MCvUV6bo" class="btn btn-success active" role="button">Download</a>
+<!--       <button type="button" name="download_data" id="Download_data"  class="btn btn-success">Download</button>-->
+       <button type="submit" name="load_data" id="load_data" class="btn btn-danger">Plot Data</button>
+       <div id="chartContainer" style="width:100%; height:300px;"></div>
+       <div id="chartContainer2" style="width:100%; height:300px;"></div>
+       <div id="chartContainer3" style="width:100%; height:300px;"></div>
+
+
+      </div>
+      <br />
+      <div id="employee_table">
+      </div>
+     </div>
+    </div>
+
+
+   </div>
+  </div>
+ </div>
+
+
+
+
+
+ </body>
+</html>
 
 <script>
+
+ // window.onload = function() {
+ //  var dataPoints = [];
+ //
+ //  function getDataPointsFromCSV(csv) {
+ //   var dataPoints = csvLines = points = [];
+ //   csvLines = csv.split(/[\r?\n|\r|\n]+/);
+ //
+ //   for (var i = 0; i < csvLines.length; i++)
+ //    if (csvLines[i].length > 0) {
+ //     points = csvLines[i].split(",");
+ //     dataPoints.push({
+ //      x: parseFloat(points[0]),
+ //      y: parseFloat(points[1])
+ //     });
+ //    }
+ //   return dataPoints;
+ //  }
+ //
+ //  $.get("employee.csv", function(data) {
+ //   var chart = new CanvasJS.Chart("chartContainer", {
+ //    title: {
+ //     text: "Chart from CSV",
+ //    },
+ //    data: [{
+ //     type: "line",
+ //     dataPoints: getDataPointsFromCSV(data)
+ //    }]
+ //   });
+ //
+ //   chart.render();
+ //
+ //  });
+ // }
+
 $(document).ready(function(){
  $('#load_data').click(function(){
   $.ajax({
-   url:"employee.csv",
+   url:"./daten/employee.csv",
    dataType:"text",
+
    success:function(data)
    {
     var employee_data = data.split(/\r?\n|\r/);
+
+ 
+    var dataPoints = [];
+ 
+    function getDataPointsFromCSV(data) {
+     var dataPoints = csvLines = points = [];
+     var dataPoints2 = csvLines = points = [];
+     var dataPoints3 = csvLines = points = [];
+     csvLines = data.split(/[\r?\n|\r|\n]+/);
+
+     for (var i = 0; i < csvLines.length; i++)
+      if (csvLines[i].length > 0) {
+       points = csvLines[i].split(",");
+       dataPoints.push({
+        x: parseFloat(points[0]),
+        y: parseFloat(points[1]),
+
+       });
+
+       dataPoints2.push({
+        x: parseFloat(points[0]),
+        y: parseFloat(points[2]),
+
+       });
+       dataPoints3.push({
+        x: parseFloat(points[0]),
+        y: parseFloat(points[3]),
+
+       });
+      }
+
+
+     return dataPoints;
+    }
+
+    $.get("./daten/employee.csv", function(data) {
+     var chart = new CanvasJS.Chart("chartContainer", {
+      title: {
+       text: "Temperatur2 Chart from CSV",
+      },
+      data: [{
+       type: "line",
+       dataPoints: getDataPointsFromCSV(data),
+
+      }]
+     });
+
+     chart.render();
+
+    });
+
+
+    function getDataPointsFromCSV2(data) {
+     var dataPoints = csvLines = points = [];
+     var dataPoints2 = csvLines = points = [];
+     var dataPoints3 = csvLines = points = [];
+     csvLines = data.split(/[\r?\n|\r|\n]+/);
+
+     for (var i = 0; i < csvLines.length; i++)
+      if (csvLines[i].length > 0) {
+       points = csvLines[i].split(",");
+       dataPoints.push({
+        x: parseFloat(points[0]),
+        y: parseFloat(points[1]),
+
+       });
+
+       dataPoints2.push({
+        x: parseFloat(points[0]),
+        y: parseFloat(points[2]),
+
+       });
+       dataPoints3.push({
+        x: parseFloat(points[0]),
+        y: parseFloat(points[3]),
+
+       });
+      }
+
+
+     return dataPoints2;
+    }
+
+
+
+    $.get("./daten/employee.csv", function(data) {
+     var chart = new CanvasJS.Chart("chartContainer2", {
+      title: {
+       text: "Stromsensor3 Chart from CSV",
+      },
+      data: [{
+       type: "line",
+       color: "red",
+       dataPoints: getDataPointsFromCSV2(data),
+
+      }]
+     });
+
+     chart.render();
+
+    });
+
+
+
+
+    function getDataPointsFromCSV3(data) {
+     var dataPoints = csvLines = points = [];
+     var dataPoints2 = csvLines = points = [];
+     var dataPoints3 = csvLines = points = [];
+     csvLines = data.split(/[\r?\n|\r|\n]+/);
+
+     for (var i = 0; i < csvLines.length; i++)
+      if (csvLines[i].length > 0) {
+       points = csvLines[i].split(",");
+       dataPoints.push({
+        x: parseFloat(points[0]),
+        y: parseFloat(points[1]),
+
+       });
+
+       dataPoints2.push({
+        x: parseFloat(points[0]),
+        y: parseFloat(points[2]),
+
+       });
+       dataPoints3.push({
+        x: parseFloat(points[0]),
+        y: parseFloat(points[3]),
+
+       });
+      }
+
+
+     return dataPoints3;
+    }
+
+    $.get("./daten/employee.csv", function(data) {
+     var chart = new CanvasJS.Chart("chartContainer3", {
+      title: {
+       text: "Spannungsensor3 Chart from CSV",
+      },
+      data: [{
+       type: "line",
+       color: "Orange",
+       dataPoints: getDataPointsFromCSV3(data),
+
+      }]
+     });
+
+     chart.render();
+
+    });
+
+
+
     var table_data = '<table class="table table-bordered table-striped">';
     for(var count = 0; count<employee_data.length; count++)
     {
@@ -61,38 +306,75 @@ $(document).ready(function(){
     }
     table_data += '</table>';
     $('#employee_table').html(table_data);
+
+
    }
   });
  });
  
 });
+
+
+
 </script>
 
+<!--<script type="text/javascript">-->
+<!-- window.onload = function() {-->
+<!--  var dataPoints = [];-->
 
+<!--  function getDataPointsFromCSV(csv) {-->
+<!--   var dataPoints = csvLines = points = [];-->
+<!--   csvLines = csv.split(/[\r?\n|\r|\n]+/);-->
 
+<!--   for (var i = 0; i < csvLines.length; i++)-->
+<!--    if (csvLines[i].length > 0) {-->
+<!--     points = csvLines[i].split(",");-->
+<!--     dataPoints.push({-->
+<!--      x: parseFloat(points[0]),-->
+<!--      y: parseFloat(points[1])-->
+<!--     });-->
+<!--    }-->
+<!--   return dataPoints;-->
+<!--  }-->
 
-<script type="text/javascript">
-  google.charts.load('current', {'packages':['corechart']});
-  google.charts.setOnLoadCallback(drawChart);
+<!--  $.get("https://canvasjs.com/services/data/datapoints.php?xstart=5&ystart=10&length=10&type=csv", function(data) {-->
+<!--   var chart = new CanvasJS.Chart("chartContainer", {-->
+<!--    title: {-->
+<!--     text: "Chart from CSV",-->
+<!--    },-->
+<!--    data: [{-->
+<!--     type: "line",-->
+<!--     dataPoints: getDataPointsFromCSV(data)-->
+<!--    }]-->
+<!--   });-->
 
-  function drawChart() {
-    var xxxdata = google.visualization.arrayToDataTable([
-      ['Year', 'Sales', 'Expenses'],
-      ['2004',  1000,      400],
-      ['2005',  1170,      460],
-      ['2006',  660,       1120],
-      ['2007',  1030,      540]
-    ]);
+<!--   chart.render();-->
 
-    var options = {
-      title: 'IAL GaN Performance',
-      curveType: 'function',
-      legend: { position: 'bottom' }
-    };
+<!--  });-->
+<!-- }-->
+<!--</script>-->
 
-    var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+<!--<script type="text/javascript">-->
+<!-- google.charts.load('current', {'packages':['corechart']});-->
+<!-- google.charts.setOnLoadCallback(drawChart);-->
 
-    chart.draw(cell_data, options);
-  }
-</script>
-</html>
+<!-- function drawChart() {-->
+<!--  var xxdata = google.visualization.arrayToDataTable([-->
+<!--   ['Year', 'Sales', 'Expenses'],-->
+<!--   ['2004',  1000,      400],-->
+<!--   ['2005',  1170,      460],-->
+<!--   ['2006',  660,       1120],-->
+<!--   ['2007',  1030,      540]-->
+<!--  ]);-->
+
+<!--  var options = {-->
+<!--   title: 'Company Performance',-->
+<!--   curveType: 'function',-->
+<!--   legend: { position: 'bottom' }-->
+<!--  };-->
+
+<!--  var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));-->
+
+<!--  chart.draw(employee_data, options);-->
+<!-- }-->
+<!--</script>-->

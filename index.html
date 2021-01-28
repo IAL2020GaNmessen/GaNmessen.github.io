@@ -1,380 +1,255 @@
 <!DOCTYPE html>
 <html>
- <head>
-  <title>IAL Bauelement</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
-  <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-  <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-
-
-<!--  -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-
-
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
- </head>
-
-
-
-
-
-
-
-
-
- <body>
-
-
-
-
-
-
-
-
- <div class="container-fluid">
-  <div class="row">
-   <div class="col-md-8">
-
-    <img src="./daten/LUH_Logo.png" class="img-responsive" alt="Responsive image">
-<!--    <img alt="Bootstrap Image Preview" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" />-->
-   </div>
-   <div class="col-md-4">
-    <img src="./daten/IAL_Logo.png" class="img-responsive" alt="Responsive image">
-<!--    <img alt="Bootstrap Image Preview" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" />-->
-   </div>
-  </div>
-  <div class="row">
-   <div class="col-md-12">
-
-<!--    https://mega.nz/file/zQ1lzKoT#rWXWOB7W7wIYpSBLonVULkOaeaiSuXBD0J_MCvUV6bo  -->
-
-    <div class="container">
-     <div class="table-responsive">
-
-      <h1 class="bg-info" align="center">IAL GaN_DUT messen</h1>
-<!--      <h1 align="center">IAL GaN_DUT messe-->
-<!--      </h1>-->
-      <br />
-      <div align="center">
-       <!--  -->
-       <a href="https://mega.nz/file/zQ1lzKoT#rWXWOB7W7wIYpSBLonVULkOaeaiSuXBD0J_MCvUV6bo" class="btn btn-success active" role="button">Download</a>
-<!--       <button type="button" name="download_data" id="Download_data"  class="btn btn-success">Download</button>-->
-       <button type="submit" name="load_data" id="load_data" class="btn btn-danger">Plot Data</button>
-       <div id="chartContainer" style="width:100%; height:300px;"></div>
-       <div id="chartContainer2" style="width:100%; height:300px;"></div>
-       <div id="chartContainer3" style="width:100%; height:300px;"></div>
-
-
-      </div>
-      <br />
-      <div id="employee_table">
-      </div>
-     </div>
-    </div>
-
-
-   </div>
-  </div>
- </div>
-
-
-
-
-
- </body>
-</html>
-
-<script>
-
- // window.onload = function() {
- //  var dataPoints = [];
- //
- //  function getDataPointsFromCSV(csv) {
- //   var dataPoints = csvLines = points = [];
- //   csvLines = csv.split(/[\r?\n|\r|\n]+/);
- //
- //   for (var i = 0; i < csvLines.length; i++)
- //    if (csvLines[i].length > 0) {
- //     points = csvLines[i].split(",");
- //     dataPoints.push({
- //      x: parseFloat(points[0]),
- //      y: parseFloat(points[1])
- //     });
- //    }
- //   return dataPoints;
- //  }
- //
- //  $.get("employee.csv", function(data) {
- //   var chart = new CanvasJS.Chart("chartContainer", {
- //    title: {
- //     text: "Chart from CSV",
- //    },
- //    data: [{
- //     type: "line",
- //     dataPoints: getDataPointsFromCSV(data)
- //    }]
- //   });
- //
- //   chart.render();
- //
- //  });
- // }
-
-$(document).ready(function(){
- $('#load_data').click(function(){
-  $.ajax({
-   url:"./daten/employee.csv",
-   dataType:"text",
-
-   success:function(data)
-   {
-    var employee_data = data.split(/\r?\n|\r/);
-
- 
-    var dataPoints = [];
- 
-    function getDataPointsFromCSV(data) {
-     var dataPoints = csvLines = points = [];
-     var dataPoints2 = csvLines = points = [];
-     var dataPoints3 = csvLines = points = [];
-     csvLines = data.split(/[\r?\n|\r|\n]+/);
-
-     for (var i = 0; i < csvLines.length; i++)
-      if (csvLines[i].length > 0) {
-       points = csvLines[i].split(",");
-       dataPoints.push({
-        x: parseFloat(points[0]),
-        y: parseFloat(points[1]),
-
-       });
-
-       dataPoints2.push({
-        x: parseFloat(points[0]),
-        y: parseFloat(points[2]),
-
-       });
-       dataPoints3.push({
-        x: parseFloat(points[0]),
-        y: parseFloat(points[3]),
-
-       });
-      }
-
-
-     return dataPoints;
-    }
-
-    $.get("./daten/employee.csv", function(data) {
-     var chart = new CanvasJS.Chart("chartContainer", {
-      title: {
-       text: "Temperatur2 Chart from CSV",
-      },
-      data: [{
-       type: "line",
-       dataPoints: getDataPointsFromCSV(data),
-
-      }]
-     });
-
-     chart.render();
-
-    });
-
-
-    function getDataPointsFromCSV2(data) {
-     var dataPoints = csvLines = points = [];
-     var dataPoints2 = csvLines = points = [];
-     var dataPoints3 = csvLines = points = [];
-     csvLines = data.split(/[\r?\n|\r|\n]+/);
-
-     for (var i = 0; i < csvLines.length; i++)
-      if (csvLines[i].length > 0) {
-       points = csvLines[i].split(",");
-       dataPoints.push({
-        x: parseFloat(points[0]),
-        y: parseFloat(points[1]),
-
-       });
-
-       dataPoints2.push({
-        x: parseFloat(points[0]),
-        y: parseFloat(points[2]),
-
-       });
-       dataPoints3.push({
-        x: parseFloat(points[0]),
-        y: parseFloat(points[3]),
-
-       });
-      }
-
-
-     return dataPoints2;
-    }
-
-
-
-    $.get("./daten/employee.csv", function(data) {
-     var chart = new CanvasJS.Chart("chartContainer2", {
-      title: {
-       text: "Stromsensor3 Chart from CSV",
-      },
-      data: [{
-       type: "line",
-       color: "red",
-       dataPoints: getDataPointsFromCSV2(data),
-
-      }]
-     });
-
-     chart.render();
-
-    });
-
-
-
-
-    function getDataPointsFromCSV3(data) {
-     var dataPoints = csvLines = points = [];
-     var dataPoints2 = csvLines = points = [];
-     var dataPoints3 = csvLines = points = [];
-     csvLines = data.split(/[\r?\n|\r|\n]+/);
-
-     for (var i = 0; i < csvLines.length; i++)
-      if (csvLines[i].length > 0) {
-       points = csvLines[i].split(",");
-       dataPoints.push({
-        x: parseFloat(points[0]),
-        y: parseFloat(points[1]),
-
-       });
-
-       dataPoints2.push({
-        x: parseFloat(points[0]),
-        y: parseFloat(points[2]),
-
-       });
-       dataPoints3.push({
-        x: parseFloat(points[0]),
-        y: parseFloat(points[3]),
-
-       });
-      }
-
-
-     return dataPoints3;
-    }
-
-    $.get("./daten/employee.csv", function(data) {
-     var chart = new CanvasJS.Chart("chartContainer3", {
-      title: {
-       text: "Spannungsensor3 Chart from CSV",
-      },
-      data: [{
-       type: "line",
-       color: "Orange",
-       dataPoints: getDataPointsFromCSV3(data),
-
-      }]
-     });
-
-     chart.render();
-
-    });
-
-
-
-    var table_data = '<table class="table table-bordered table-striped">';
-    for(var count = 0; count<employee_data.length; count++)
-    {
-     var cell_data = employee_data[count].split(",");
-     table_data += '<tr>';
-     for(var cell_count=0; cell_count<cell_data.length; cell_count++)
-     {
-      if(count === 0)
-      {
-       table_data += '<th>'+cell_data[cell_count]+'</th>';
-      }
-      else
-      {
-       table_data += '<td>'+cell_data[cell_count]+'</td>';
-      }
-     }
-     table_data += '</tr>';
-    }
-    table_data += '</table>';
-    $('#employee_table').html(table_data);
-
-
-   }
-  });
- });
- 
-});
-
-
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Dashboard - Brand</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css">
+    <link rel="stylesheet" href="assets/css/File-Input---Beautiful-Input--Button-Approach-Jasny-Bootstrap.css">
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+        <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
+            <div class="container-fluid d-flex flex-column p-0">
+                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+                    <div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-plane-departure"></i></div>
+                    <div class="sidebar-brand-text mx-3"><span>IAL-Mess</span></div>
+                </a>
+                <hr class="sidebar-divider my-0">
+                <ul class="nav navbar-nav text-light" id="accordionSidebar">
+                    <li class="nav-item"><a class="nav-link active" href="index.html"><i class="fas fa-tachometer-alt"></i><span>FileLoadPedia</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="profile.html"><i class="fas fa-cloud-download-alt"></i><span>Download</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="table.html"><i class="fas fa-table"></i><span>DataTable</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html"><i class="far fa-user-circle"></i><span>Login</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-user-circle"></i><span>Register</span></a></li>
+                </ul>
+                <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
+            </div>
+        </nav>
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
+                    <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
+                        <div class="btn-group" role="group"></div>
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons" style="color: rgba(0,30,255,0.51);filter: blur(36px);background: #4e73df;font-size: 16px;width: 120px;height: 31px;margin: 18px;padding: -3px;text-align: left;"></div><div class="fileinput fileinput-new input-group" data-provides="fileinput">
+  <div   class="form-control   navbar-search  data-trigger="fileinput" ><i class="glyphicon glyphicon-file fileinput-exists"  ></i> <span class="fileinput-filename "></span></div>
+  <span class="input-group-addon btn-primary btn-default btn-file"><span class="fileinput-new" >&nbsp Choose file&nbsp</span><span class="fileinput-exists" >&nbspChange&nbsp</span><input type="file" name="..."></span>
+  <a href="#" class="input-group-addon btn-outline-primary btn-default fileinput-exists" data-dismiss="fileinput">&nbspRemove&nbsp</a>
+</div>
+                    <input type="file"   id="choose"><br><br>
+                        <form class="form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                            <div class="input-group"></div>
+                        </form><input class="bg-light border-0 small" type="text" placeholder="Search for ..." style="width: 183px;height: 25px;margin: 19px;padding: 15px;">
+                        <div class="input-group-append"><button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button></div>
+                    </div>
+                </nav>
+
+
+
+
+                <div class="container-fluid">
+                    <div class="d-sm-flex justify-content-between align-items-center mb-4">
+                        <h3 class="text-dark mb-0">File load pedia</h3><a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#"><i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Generate Report</a></div>
+                    <div class="row">
+                        <div class="col-lg-7 col-xl-8">
+                            <div class="card shadow mb-4">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <ul class="nav nav-tabs card-header-tabs">
+                                            <li class="nav-item"><a class="nav-link active" href="#">Alle</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="#">Spannungen</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="#">Temperatoren</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="card-title">RohDaten</h4>
+<!--                                        <input type="file" id="file" /><input type="button" value="显示文本文件" οnclick="readAsText();"/>-->
+
+<!--<div name="result" id="result">-->
+
+<!--</div>-->
+
+                                        <p class="card-text" id="demo">init, Raw Data is empty. </p>
+                                        <button class="btn btn-primary" type="button" id = "choose2">&nbsp;change to Dec&nbsp; </button></div>
+                                        <p class="card-text" id="demo2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;init, Dec Data is empty. </p>
+                                </div>
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h6 class="text-primary font-weight-bold m-0">DataOverview</h6>
+                                    <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button"><i class="fas fa-ellipsis-v text-gray-400"></i></button>
+                                        <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in">
+                                            <p class="text-center dropdown-header">dropdown header:</p><a class="dropdown-item" href="#">&nbsp;Action</a><a class="dropdown-item" href="#">&nbsp;Another action</a>
+                                            <div class="dropdown-divider"></div><a class="dropdown-item" href="#">&nbsp;Something else here</a></div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart-area"><canvas data-bs-chart="{&quot;type&quot;:&quot;line&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Jan&quot;,&quot;Feb&quot;,&quot;Mar&quot;,&quot;Apr&quot;,&quot;May&quot;,&quot;Jun&quot;,&quot;Jul&quot;,&quot;Aug&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;Earnings&quot;,&quot;fill&quot;:true,&quot;data&quot;:[&quot;0&quot;,&quot;10000&quot;,&quot;5000&quot;,&quot;15000&quot;,&quot;10000&quot;,&quot;20000&quot;,&quot;15000&quot;,&quot;25000&quot;],&quot;backgroundColor&quot;:&quot;rgba(78, 115, 223, 0.05)&quot;,&quot;borderColor&quot;:&quot;rgba(78, 115, 223, 1)&quot;}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:false},&quot;title&quot;:{},&quot;scales&quot;:{&quot;xAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;zeroLineColor&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;drawBorder&quot;:false,&quot;drawTicks&quot;:false,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;],&quot;drawOnChartArea&quot;:false},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#858796&quot;,&quot;padding&quot;:20}}],&quot;yAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;zeroLineColor&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;drawBorder&quot;:false,&quot;drawTicks&quot;:false,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;]},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#858796&quot;,&quot;padding&quot;:20}}]}}}"></canvas></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-xl-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h6 class="text-primary font-weight-bold m-0">DUT Sources</h6>
+                                    <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button"><i class="fas fa-ellipsis-v text-gray-400"></i></button>
+                                        <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in">
+                                            <p class="text-center dropdown-header">dropdown header:</p><a class="dropdown-item" href="#">&nbsp;Action</a><a class="dropdown-item" href="#">&nbsp;Another action</a>
+                                            <div class="dropdown-divider"></div><a class="dropdown-item" href="#">&nbsp;Something else here</a></div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart-area"><canvas data-bs-chart="{&quot;type&quot;:&quot;doughnut&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Normal &quot;,&quot;Defekt&quot;,&quot;Temperatur&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;&quot;,&quot;backgroundColor&quot;:[&quot;#4e73df&quot;,&quot;#1cc88a&quot;,&quot;#36b9cc&quot;],&quot;borderColor&quot;:[&quot;#ffffff&quot;,&quot;#ffffff&quot;,&quot;#ffffff&quot;],&quot;data&quot;:[&quot;50&quot;,&quot;30&quot;,&quot;15&quot;]}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:false},&quot;title&quot;:{}}}"></canvas></div>
+                                    <div
+                                        class="text-center small mt-4"><span class="mr-2"><i class="fas fa-circle text-primary"></i>&nbsp;Normal</span><span class="mr-2"><i class="fas fa-circle text-success"></i>&nbsp;Defekt </span><span class="mr-2"><i class="fas fa-circle text-info"></i>&nbsp;Temperatur</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 mb-4">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="text-primary font-weight-bold m-0">Projects</h6>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="small font-weight-bold">Server migration<span class="float-right">20%</span></h4>
+                                <div class="progress mb-4">
+                                    <div class="progress-bar bg-danger" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%;"><span class="sr-only">20%</span></div>
+                                </div>
+                                <h4 class="small font-weight-bold">Sales tracking<span class="float-right">40%</span></h4>
+                                <div class="progress mb-4">
+                                    <div class="progress-bar bg-warning" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%;"><span class="sr-only">40%</span></div>
+                                </div>
+                                <h4 class="small font-weight-bold">Customer Database<span class="float-right">60%</span></h4>
+                                <div class="progress mb-4">
+                                    <div class="progress-bar bg-primary" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"><span class="sr-only">60%</span></div>
+                                </div>
+                                <h4 class="small font-weight-bold">Payout Details<span class="float-right">80%</span></h4>
+                                <div class="progress mb-4">
+                                    <div class="progress-bar bg-info" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;"><span class="sr-only">80%</span></div>
+                                </div>
+                                <h4 class="small font-weight-bold">Account setup<span class="float-right">Complete!</span></h4>
+                                <div class="progress mb-4">
+                                    <div class="progress-bar bg-success" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"><span class="sr-only">100%</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card shadow mb-4"></div>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-lg-6 mb-4">
+                                <div class="card text-white bg-primary shadow">
+                                    <div class="card-body">
+                                        <p class="m-0">Primary</p>
+                                        <p class="text-white-50 small m-0">#4e73df</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-4">
+                                <div class="card text-white bg-success shadow">
+                                    <div class="card-body">
+                                        <p class="m-0">Success</p>
+                                        <p class="text-white-50 small m-0">#1cc88a</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-4">
+                                <div class="card text-white bg-info shadow">
+                                    <div class="card-body">
+                                        <p class="m-0">Info</p>
+                                        <p class="text-white-50 small m-0">#36b9cc</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-4">
+                                <div class="card text-white bg-warning shadow">
+                                    <div class="card-body">
+                                        <p class="m-0">Warning</p>
+                                        <p class="text-white-50 small m-0">#f6c23e</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-4">
+                                <div class="card text-white bg-danger shadow">
+                                    <div class="card-body">
+                                        <p class="m-0">Danger</p>
+                                        <p class="text-white-50 small m-0">#e74a3b</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-4">
+                                <div class="card text-white bg-secondary shadow">
+                                    <div class="card-body">
+                                        <p class="m-0">Secondary</p>
+                                        <p class="text-white-50 small m-0">#858796</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="bg-white sticky-footer">
+            <div class="container my-auto">
+                <div class="text-center my-auto copyright"><span>Copyright © Brand 2021</span></div>
+            </div>
+        </footer>
+    </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/chart.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <script src="assets/js/File-Input---Beautiful-Input--Button-Approach-Jasny-Bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+    <script src="assets/js/theme.js"></script>
+
+<script type="text/javascript">
+var choose = document.getElementById('choose');
+var demo = document.getElementById('demo');
+choose.onchange = function(){
+  showText(this, demo);
+}
+function showText(chooseDom, textDom){
+  var file = chooseDom.files[0];
+  var fr = new FileReader();
+  fr.onload = function(e){
+    textDom.innerHTML = e.target.result;
+  }
+  fr.readAsText(file);
+}
 
 </script>
 
-<!--<script type="text/javascript">-->
-<!-- window.onload = function() {-->
-<!--  var dataPoints = [];-->
 
-<!--  function getDataPointsFromCSV(csv) {-->
-<!--   var dataPoints = csvLines = points = [];-->
-<!--   csvLines = csv.split(/[\r?\n|\r|\n]+/);-->
+<script type="text/javascript">
 
-<!--   for (var i = 0; i < csvLines.length; i++)-->
-<!--    if (csvLines[i].length > 0) {-->
-<!--     points = csvLines[i].split(",");-->
-<!--     dataPoints.push({-->
-<!--      x: parseFloat(points[0]),-->
-<!--      y: parseFloat(points[1])-->
-<!--     });-->
-<!--    }-->
-<!--   return dataPoints;-->
-<!--  }-->
+var choose2 = document.getElementById('choose2');
 
-<!--  $.get("https://canvasjs.com/services/data/datapoints.php?xstart=5&ystart=10&length=10&type=csv", function(data) {-->
-<!--   var chart = new CanvasJS.Chart("chartContainer", {-->
-<!--    title: {-->
-<!--     text: "Chart from CSV",-->
-<!--    },-->
-<!--    data: [{-->
-<!--     type: "line",-->
-<!--     dataPoints: getDataPointsFromCSV(data)-->
-<!--    }]-->
-<!--   });-->
+var demo2 = document.getElementById('demo2');
+choose2.onclick = function(){
+  changeText(this, demo2);
+}
 
-<!--   chart.render();-->
 
-<!--  });-->
-<!-- }-->
-<!--</script>-->
+function changeText(chooseDom, textDom){
+  var file = chooseDom.files[0];
 
-<!--<script type="text/javascript">-->
-<!-- google.charts.load('current', {'packages':['corechart']});-->
-<!-- google.charts.setOnLoadCallback(drawChart);-->
+  var fr = new FileReader();
 
-<!-- function drawChart() {-->
-<!--  var xxdata = google.visualization.arrayToDataTable([-->
-<!--   ['Year', 'Sales', 'Expenses'],-->
-<!--   ['2004',  1000,      400],-->
-<!--   ['2005',  1170,      460],-->
-<!--   ['2006',  660,       1120],-->
-<!--   ['2007',  1030,      540]-->
-<!--  ]);-->
+  fr.onload = function(e){
+    textDom.innerHTML = e.target.result;
+  }
+  fr.readAsText(file);
+}
 
-<!--  var options = {-->
-<!--   title: 'Company Performance',-->
-<!--   curveType: 'function',-->
-<!--   legend: { position: 'bottom' }-->
-<!--  };-->
+</script>
 
-<!--  var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));-->
+</body>
 
-<!--  chart.draw(employee_data, options);-->
-<!-- }-->
-<!--</script>-->
+</html>
